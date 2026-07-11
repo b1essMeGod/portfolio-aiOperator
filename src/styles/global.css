@@ -140,62 +140,109 @@ img {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-glow) 0%, var(--bg-deep) 70%);
-}
-
-.ambient-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -8%, rgba(45, 78, 207, 0.2) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 50% at 100% 22%, rgba(61, 94, 255, 0.14) 0%, transparent 52%),
+    radial-gradient(ellipse 50% 45% at -5% 68%, rgba(30, 58, 138, 0.16) 0%, transparent 50%),
+    radial-gradient(ellipse 45% 40% at 72% 100%, rgba(42, 68, 153, 0.12) 0%, transparent 48%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-glow) 0%, var(--bg-deep) 72%);
 }
 
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.22;
-  animation: orbFloat 24s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: orbFloat 28s ease-in-out infinite;
 }
 
 .ambient-orb--1 {
-  width: 40vw;
-  height: 40vw;
-  top: -10%;
-  right: -8%;
-  background: radial-gradient(circle, #2d4ecf 0%, transparent 68%);
+  width: clamp(300px, 58vw, 620px);
+  height: clamp(300px, 58vw, 620px);
+  top: -14%;
+  right: -10%;
+  background: radial-gradient(
+    circle,
+    rgba(61, 94, 255, 0.52) 0%,
+    rgba(45, 78, 207, 0.22) 32%,
+    rgba(45, 78, 207, 0.07) 52%,
+    transparent 72%
+  );
 }
 
 .ambient-orb--2 {
-  width: 34vw;
-  height: 34vw;
-  bottom: 6%;
-  left: -12%;
-  background: radial-gradient(circle, #1a3a7a 0%, transparent 70%);
-  animation-delay: -7s;
+  width: clamp(260px, 48vw, 520px);
+  height: clamp(260px, 48vw, 520px);
+  bottom: 4%;
+  left: -14%;
+  background: radial-gradient(
+    circle,
+    rgba(30, 80, 160, 0.42) 0%,
+    rgba(26, 58, 122, 0.18) 34%,
+    rgba(26, 58, 122, 0.06) 54%,
+    transparent 74%
+  );
+  animation-delay: -8s;
 }
 
 .ambient-orb--3 {
-  width: 26vw;
-  height: 26vw;
-  top: 40%;
-  left: 40%;
-  background: radial-gradient(circle, #1e5080 0%, transparent 72%);
-  animation-delay: -12s;
+  width: clamp(220px, 38vw, 420px);
+  height: clamp(220px, 38vw, 420px);
+  top: 38%;
+  left: 36%;
+  background: radial-gradient(
+    circle,
+    rgba(40, 110, 190, 0.34) 0%,
+    rgba(30, 80, 128, 0.14) 36%,
+    transparent 70%
+  );
+  animation-delay: -14s;
 }
 
 .ambient-orb--4 {
-  width: 22vw;
-  height: 22vw;
-  bottom: -6%;
-  right: 20%;
-  background: radial-gradient(circle, #2a4499 0%, transparent 70%);
-  animation-delay: -16s;
+  width: clamp(200px, 34vw, 380px);
+  height: clamp(200px, 34vw, 380px);
+  bottom: -8%;
+  right: 16%;
+  background: radial-gradient(
+    circle,
+    rgba(52, 82, 180, 0.36) 0%,
+    rgba(42, 68, 153, 0.14) 34%,
+    transparent 72%
+  );
+  animation-delay: -20s;
 }
 
-:root[data-theme='light'] .ambient-orb {
-  opacity: 0.22;
+:root[data-theme='light'] .ambient-bg {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -8%, rgba(45, 78, 207, 0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 50% at 100% 22%, rgba(61, 94, 255, 0.1) 0%, transparent 52%),
+    radial-gradient(ellipse 50% 45% at -5% 68%, rgba(30, 58, 138, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-glow) 0%, var(--bg-deep) 72%);
+}
+
+:root[data-theme='light'] .ambient-orb--1 {
+  background: radial-gradient(
+    circle,
+    rgba(61, 94, 255, 0.28) 0%,
+    rgba(45, 78, 207, 0.12) 34%,
+    transparent 72%
+  );
+}
+
+:root[data-theme='light'] .ambient-orb--2 {
+  background: radial-gradient(
+    circle,
+    rgba(0, 80, 200, 0.22) 0%,
+    rgba(30, 58, 138, 0.08) 36%,
+    transparent 74%
+  );
+}
+
+:root[data-theme='light'] .ambient-orb--3,
+:root[data-theme='light'] .ambient-orb--4 {
+  opacity: 0.85;
 }
 
 .hero-grid {
@@ -227,9 +274,7 @@ img {
   padding: 0.75rem 1rem;
   border: 1px solid var(--glass-border);
   border-radius: 999px;
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
   box-shadow: var(--shadow);
   transition:
     border-color var(--motion-base),
@@ -237,6 +282,14 @@ img {
     box-shadow var(--motion-base),
     padding var(--motion-base);
   isolation: isolate;
+}
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .site-header {
+    background: var(--glass);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
 }
 
 .site-header.is-scrolled {
@@ -785,14 +838,28 @@ main {
 footer {
   border: 1px solid var(--glass-border);
   border-radius: 28px;
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.025) 100%);
   box-shadow: var(--shadow);
   transition:
     border-color var(--motion-base),
     background var(--motion-base),
     box-shadow var(--motion-base);
+}
+
+:root[data-theme='light'] .hero-section,
+:root[data-theme='light'] .content-section,
+:root[data-theme='light'] footer {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.58) 100%);
+}
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .hero-section,
+  .content-section,
+  footer {
+    background: var(--glass);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
 }
 
 .content-section[id] {
@@ -1388,6 +1455,10 @@ footer {
 }
 
 @media (max-width: 920px) {
+  :root {
+    --glass-blur: blur(16px) saturate(150%);
+  }
+
   .app-root:has(.site-header) {
     --mobile-toolbar-height: 10.5rem;
     --mobile-toolbar-gap: 0.65rem;
