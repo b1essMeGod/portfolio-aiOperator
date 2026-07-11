@@ -1,62 +1,20 @@
-export type Language = 'ru' | 'en'
+export type {
+  Language,
+  ExperienceSection,
+  ExperienceItem,
+  AboutTab,
+  SkillGroup,
+  HeroStat,
+  LocalizedContent,
+} from './types'
 
-type ExperienceItem = {
-  period: string
-  role: string
-  company: string
-  fullText: string[]
-}
+import type { LocalizedContent } from './types'
+import { experienceEn } from './experience.en'
+import { experienceRu } from './experience.ru'
 
-type SkillGroup = {
-  title: string
-  items: string[]
-}
-
-type LocalizedContent = {
-  nav: {
-    about: string
-    experience: string
-    skills: string
-    works: string
-    contacts: string
-  }
-  hero: {
-    name: string
-    role: string
-    summary: string
-    primaryCta: string
-    secondaryCta: string
-  }
-  about: {
-    title: string
-    paragraphs: string[]
-  }
-  experience: {
-    title: string
-    items: ExperienceItem[]
-  }
-  skills: {
-    title: string
-    groups: SkillGroup[]
-  }
-  contacts: {
-    title: string
-    intro: string
-    telegram: string
-    email: string
-    phone: string
-  }
-  footer: string
-  controls: {
-    theme: string
-    language: string
-    dark: string
-    light: string
-  }
-}
-
-export const content: Record<Language, LocalizedContent> = {
+export const content: Record<'ru' | 'en', LocalizedContent> = {
   ru: {
+    brand: 'Резюме кандидата',
     nav: {
       about: 'Обо мне',
       experience: 'Опыт',
@@ -64,113 +22,145 @@ export const content: Record<Language, LocalizedContent> = {
       works: 'Мои работы',
       contacts: 'Контакты',
     },
+    navShort: {
+      about: 'Обо мне',
+      experience: 'Опыт',
+      skills: 'Навыки',
+      works: 'Работы',
+      contacts: 'Контакты',
+    },
     hero: {
       name: 'Цой Юрий Викторович',
       role: 'Fullstack AI Operator | Middle Frontend Developer',
       summary:
-        'Создаю быстрые и удобные веб-продукты: от прототипа до production. Усиливаю разработку AI-инструментами, чтобы выпускать результат быстрее без потери качества.',
+        'Fullstack AI Operator: проектирую и выпускаю веб-продукты с production-ready AI — от RAG-систем и LLM-оркестрации до интерфейсов и DevOps.',
       primaryCta: 'Скачать резюме',
       secondaryCta: 'Связаться',
+      stats: [
+        { value: '16', label: 'проектов' },
+        { value: '4+', label: 'лет опыта' },
+        { value: 'AI', label: 'Fullstack' },
+      ],
     },
     about: {
       title: 'Обо мне',
-      paragraphs: [
-        'Fullstack AI Operator / Middle Frontend-разработчик',
-        'Сочетаю глубокую фронтенд-экспертизу с системным внедрением нейросетей, что позволяет кратно ускорять полный цикл веб-разработки — от прототипа до production. В одиночку реализую крупные стеки рабочих задач, обычно распределяемые на команду из 2–3 специалистов.',
-        'Как AI делает мою работу эффективнее:',
-        'Генеративный AI в коде: применяю ChatGPT, Cursor, Copilot, Gemini и собственные пайплайны для генерации типового кода, тестов и документации. Скорость вёрстки и написания компонентов выросла в 2–3 раза. Deepseek и Qwen мои лучшие помощники для AI-ресерч и аналитики.',
-        'Автоматизация рутины: создаю кастомные AI-инструменты (скрипты на Python, мини-сервисы), берущие на себя рефакторинг, проверку кросс-браузерности и первичную оптимизацию анимаций.',
-        'Ускорение бизнес-процессов: автоматизирую долгие циклы согласования макетов и сборки интерфейсов. Time-to-demo сокращён на 40–50% за счёт мгновенной генерации прототипов из текстовых описаний.',
-        'Технический стек и практика:',
-        'Фронтенд: React, Next.js, JSX, TypeScript, SASS/SCSS, Bootstrap, адаптивная кросс-браузерная вёрстка под все типы устройств.',
-        'Сложная анимация и интерактив: CSS-анимации, Framer Motion (при необходимости), canvas-эффекты.',
-        'Бэкенд и базы данных: PHP + MySQL, опыт работы с REST API, Python для автоматизации и AI-связок.',
-        'CMS: интеграция и доработка всевозможных CMS под задачи бизнеса.',
-        'AI & Automation: ChatGPT API, LangChain (базово), промпт-инжиниринг, GitHub Copilot, Cursor, всевозможные AI-ассистенты для производства контента и качественного SEO контекста.',
-        'Работа в команде:',
-        'Не просто хорошо лажу с коллективом, а осознанно развиваю людей вокруг. Делюсь AI-связками, шаблонами и best practices, провожу быстрые обзоры новых инструментов, чтобы вся команда росла в темпе. Считаю, что прокачка коллег — прямой вклад в скорость и качество общего продукта.',
-        'Ключевые результаты (кейсы):',
-        'Оптимизировал процесс вёрстки сложных лендингов: среднее время от макета до интерактивного прототипа снижено с 3 дней до 1,5.',
-        'Разработал набор внутренних AI-ассистентов для код-ревью, что позволило уменьшить количество багов на этапе frontend-тестирования примерно на 30%.',
-        'Реализовал в одиночку полный фронтенд для B2B-платформы рассчитанную на 10 фирм одной ГК с возможностью масштабирования с админ-панелью, кастомными анимациями и интеграцией с CMS в срок, который изначально планировался под команду из двух разработчиков.',
-        'Готов принести в компанию не только крепкий код, но и культуру умной автоматизации, где ручная работа минимизирована, а скорость релизов устойчиво растёт.',
+      tabs: [
+        {
+          id: 'stack',
+          label: 'Стек',
+          blocks: [
+            {
+              kind: 'group',
+              title: 'Frontend',
+              text: 'React, Next.js, TypeScript, адаптивная вёрстка, сложные UI-дашборды и аналитические кабинеты.',
+            },
+            {
+              kind: 'group',
+              title: 'Backend',
+              text: 'Python, FastAPI, PostgreSQL, Redis, REST API, multi-tenant SaaS-архитектура (MPKiller).',
+            },
+            {
+              kind: 'group',
+              title: 'AI & RAG',
+              text: 'векторные базы знаний, RAG-пайплайны, LLM API gateway, prompt engineering, LangChain (базово), интеграции OpenAI / DeepSeek / Perplexity.',
+            },
+            {
+              kind: 'group',
+              title: 'Marketplace & интеграции',
+              text: 'Ozon API, Wildberries API, выгрузка товаров, ценообразование, аналитика конкурентов.',
+            },
+            {
+              kind: 'group',
+              title: 'DevOps',
+              text: 'Docker, GitHub Actions, Nginx, мониторинг, CI/CD. CMS и PHP/MySQL — в корпоративных проектах.',
+            },
+          ],
+        },
+        {
+          id: 'ai',
+          label: 'AI',
+          blocks: [
+            {
+              kind: 'lead',
+              text: 'Fullstack AI Operator: не только ускоряю разработку нейросетями, но и проектирую AI-функции в продукте — RAG, оркестрация LLM, Human-in-the-Loop и контроль качества ответов.',
+            },
+            {
+              kind: 'card',
+              title: 'MPKiller',
+              url: 'https://mpkiller.ru',
+              text: 'построил RAG-базу знаний о товарах для автоответов на отзывы и вопросы покупателей на Ozon/Wildberries. Маршрутизация между DeepSeek, Perplexity и ChatGPT (OpenAI) с контекстом из каталога и карточек.',
+            },
+            {
+              kind: 'card',
+              title: 'GEO+',
+              url: 'https://agnc.plus-geo.com',
+              text: 'платформа AI Visibility Framework — управление присутствием бренда в ChatGPT, Алисе AI и других генеративных системах. Prompt Research (100+ промптов), AI Research, Knowledge Gap Analysis.',
+            },
+            {
+              kind: 'card',
+              title: 'AI Knowledge Factory в GEO+',
+              text: 'производство контента с Human-in-the-Loop и распространение знаний по цифровой экосистеме бренда — вместо классического SEO.',
+            },
+            {
+              kind: 'card',
+              title: 'Ускорение разработки',
+              text: 'Cursor, Copilot, Gemini и Python-пайплайны для кода, тестов и документации — time-to-demo сокращён на 40–50%.',
+            },
+          ],
+        },
+        {
+          id: 'team',
+          label: 'Команда',
+          blocks: [
+            {
+              kind: 'bullet',
+              text: 'Руковожу разработкой и выстраиваю процессы: код-ревью, Git Flow, CI/CD, документация API (OpenAPI/Swagger).',
+            },
+            {
+              kind: 'bullet',
+              text: 'Делюсь AI-связками и шаблонами — прокачка команды напрямую ускоряет релизы.',
+            },
+            {
+              kind: 'bullet',
+              text: 'Самостоятельно закрываю fullstack-стек задач уровня 2–3 специалистов: от архитектуры и backend до UI и деплоя.',
+            },
+            {
+              kind: 'bullet',
+              text: 'Коммуникация с бизнесом: перевожу задачи продавцов маркетплейсов и маркетинговых команд в технические решения.',
+            },
+          ],
+        },
+        {
+          id: 'results',
+          label: 'Результаты',
+          blocks: [
+            {
+              kind: 'card',
+              title: 'MPKiller',
+              text: 'SaaS-платформа для маркетплейсов — tenant-кабинеты, роли, 2FA, AI-автоответы на базе RAG, аналитика топ/антитоп и автоматизация продвижения.',
+            },
+            {
+              kind: 'card',
+              title: 'GEO+',
+              text: 'AI Visibility Framework в production — Baseline, Semantic Intelligence, личный кабинет с KPI и мониторингом присутствия бренда в генеративном поиске.',
+            },
+            {
+              kind: 'card',
+              title: 'Setly',
+              text: 'MVP travel-сервиса выведен на 40% быстрее (4 → 2,5 мес.), Lighthouse 92+ Mobile, доступность 99,5%.',
+            },
+            {
+              kind: 'card',
+              title: 'B2B-платформа',
+              text: 'на 10 фирм одной ГК — полный frontend solo в срок на двух разработчиков. AI code-review снизил баги на frontend-тестах ~30%.',
+            },
+          ],
+        },
       ],
     },
     experience: {
       title: 'Опыт',
-      items: [
-        {
-          period: 'Ноябрь 2025 — настоящее время',
-          role: 'Технический CEO / Lead Fullstack Developer',
-          company: 'Setly',
-          fullText: [
-            'Технический CEO / Lead Fullstack Developer (собственный продукт Setly).',
-            'Агрегатор планирования путешествий (MVP на VPS, команда 3 чел.).',
-            'Ключевые технические достижения:',
-            'Архитектура и full‑stack разработка: Спроектировал и реализовал end‑to‑end сервис с нуля: frontend на Next.js (App Router, TS, React Server Components), backend на Python (FastAPI, асинхронные эндпоинты). Интеграция внешних API (карты, погода, билеты) с временем ответа <300 мс.',
-            'DevOps и инфраструктура: Развернул на VPS (Ubuntu) с Docker (4 контейнера: Next.js, FastAPI, PostgreSQL, Redis). Настроил GitHub Actions (CI/CD: сборка → деплой → уведомления в Telegram), автоматические бэкапы БД (pg_dump + облачное хранилище), мониторинг доступности (Uptime Kuma). Доступность сервиса 99,5%.',
-            'Качество UI/UX и производительность: Реализовал адаптивную, кроссбраузерную вёрстку (Mobile First, Tailwind CSS, кастомные компоненты). Добился Lighthouse: 92+ балла (Mobile) за счёт оптимизации картинок, кэширования Redis и code splitting. Дизайн прототипов в Figma, PixelPerfect контроль.',
-            'AI в разработке и продукте: Интегрировал ChatGPT API для персонализированных маршрутов. Использовал AI-инструменты (Cursor, Copilot, Claude) для генерации кода, тестов, рефакторинга — ускорил выход MVP на 40% (с 4 до 2,5 месяцев). Настроил API-шлюз для нейросетевых запросов.',
-            'Управление командой и процессами: Руководил командой из backend разработчика и UI/UX дизайнера (GitHub Projects, код-ревью, CI/CD пайплайны). Внедрил Git Flow, автоматическое тестирование PR, документацию API (OpenAPI/Swagger).',
-            'Стек: Next.js, TypeScript, Python/FastAPI, Docker, PostgreSQL, Redis, GitHub Actions, Nginx, Cursor, AI (ChatGPT API, Copilot), Tailwind CSS, Figma, Git.',
-          ],
-        },
-        {
-          period: 'Июль 2022 — Февраль 2025',
-          role: 'Руководитель ИТ-отдела',
-          company: 'ГК ККМ',
-          fullText: [
-            'Специалист технической поддержки, цифровых решений и автоматизации бизнеса.',
-            'Группа компаний (производство и дистрибуция химической продукции: антифризы, удобрения, средства защиты растений, авто- и бытовая химия; изделия из натурального камня; активная выставочная деятельность).',
-            '5 юридических лиц под единой ИТ-инфраструктурой → весь опыт применим к каждому ЮЛ.',
-            'Ключевые достижения и зоны ответственности:',
-            'ИТ-инфраструктура и поддержка (70+ рабочих мест): Обеспечил бесперебойную работу ИТ-инфраструктуры: техническая поддержка пользователей, обслуживание оргтехники, проектирование и монтаж локальных сетей, управление интернет-каналами.',
-            'Администрировал серверы и хостинги (настройка, мониторинг, бэкапы), управление доменами и DNS-записями — минимизация простоев всех бизнес-систем.',
-            'Благодаря стабильной инфраструктуре коммерческий отдел, бухгалтерия и склады ускорили рутинные операции на 25–30% (отсутствие сбоев в учёте и документообороте).',
-            'Автоматизация процессов (1С, CRM): Развивал и дорабатывал продукты 1С (ERP, УТ, Бухгалтерия): автоматизировал отчёты, обмен данными, интеграцию с внешними сервисами. Участвовал в полном цикле внедрения и поддержки.',
-            'Внедрил и сопровождал CRM-системы для отдела продаж → сокращение времени на занесение данных на 40%.',
-            'Активно изучал и применял нейросети (ChatGPT, Copilot, Midjourney) для генерации контента сайтов, SEO-текстов, первичной отладки кода и автоматизации рутинной техподдержки (типовые ответы, инструкции).',
-            'Цифровое присутствие и веб-разработка: Поддержка и актуализация 15+ сайтов на WordPress, Tilda, Joomla. Администрирование, SEO-оптимизация (Яндекс.Метрика), управление контентом.',
-            'Самостоятельная верстка адаптивных и кроссбраузерных сайтов с нуля по макетам дизайнеров (HTML5, CSS3, JavaScript, Figma, PixelPerfect).',
-            'Использовал React для отдельных интерактивных модулей, Sass/SCSS для стилизации, GitHub для контроля версий.',
-            'Серверы, хостинги и DevOps-практики: Настройка и обслуживание серверов (в т.ч. на базе Linux), работа с PHP, MySQL, управление хостингами разных провайдеров.',
-            'Автоматизация резервного копирования и мониторинга доступности ресурсов.',
-            'Выставочная и маркетинговая деятельность: Создавал рекламные материалы для выставок: макеты буклетов, баннеров, роллапов в Adobe Illustrator, Photoshop, CorelDRAW, Figma — обеспечил единую визуальную идентичность бренда.',
-            'Координировал полный цикл подготовки к выставкам: от разработки макетов до технической поддержки онлайн-ресурсов участников.',
-            'Влияние на бизнес-подразделения: Коммерческий отдел → ускорение работы с CRM и 1С, быстрая выгрузка коммерческих предложений, автоматизация отчётности.',
-            'Бухгалтерия → стабильная работа 1С: Бухгалтерия, снижение ошибок при закрытии периодов за счёт доработанных обменов.',
-            'Склады → автоматизированный учёт остатков и движений товара через интеграцию 1С и веб-интерфейсов, уменьшение ручного ввода на 35%, внедрение системы МойСклад для учёта остатков и ревизий.',
-            'Технологический стек в работе: HTML, CSS, JavaScript, React, WordPress, Tilda, Figma, PixelPerfect, Adobe Photoshop/Illustrator/CorelDRAW, Node.js (базово), PHP, MySQL, Python (для AI-скриптов), Git/GitHub, SEO, Яндекс.Метрика, AI (ChatGPT, Copilot, нейросети для генерации контента).',
-          ],
-        },
-        {
-          period: 'Декабрь 2020 — Ноябрь 2021',
-          role: 'Web-разработчик / Технический специалист',
-          company: 'Dream Consulting',
-          fullText: [
-            'Технический стек и ключевые задачи:',
-            'Вёрстка и фронтенд: Разрабатывал и вёрстал адаптивные сайты с нуля на чистом HTML5, CSS3 — полностью резиновые/мягкие макеты под мобильные устройства и десктоп.',
-            'Постепенно осваивал и применял JavaScript для добавления интерактивности: слайдеры, всплывающие окна, валидация форм. В процессе работы активно консультировался с более опытными коллегами и оперативно вносил правки по итогам код-ревью, что повысило качество итогового кода.',
-            'Начал работать с ReactJS для создания динамических интерфейсов (базовые компоненты, состояние, рендер списков). Использовал JSX-синтаксис при вёрстке компонентов в среде React.',
-            'Применял препроцессор SASS (SCSS) для оптимизации стилей, вложенности и переменных — улучшил поддерживаемость кода на 30% (меньше правок при расширении макетов). Всегда стремился писать понятную структуру стилей, чтобы любой член команды мог легко продолжить работу с моим кодом.',
-            'Пре-продакшн подготовка макетов: Обрабатывал изображения, выравнивал элементы по сетке, подбирал и корректировал цветовые схемы на основе макетов из Figma.',
-            'На этапе приёмки макетов обсуждал с дизайнерами спорные моменты, предлагая компромиссные решения, которые сохраняют визуал, но ускоряют вёрстку.',
-            'Реализация проектов: Реализовал 5 корпоративных сайтов под ключ (от макета до публикации на хостинге) для локальных клиентов, 7 витрин-одностраничников для показа продукции.',
-            'В каждом проекте лично был заинтересован в идеальной работе интерфейсов — перепроверял адаптив, интерактив и скорость загрузки, прежде чем показать результат заказчику или тимлиду.',
-            'Начальный опыт с серверами и хостингами: Размещал готовые сайты на хостингах (настройка FTP, базовая работа с панелями управления, привязка доменов).',
-            'Участвовал в переносе сайтов между хостингами, настройке базовых резервных копий. В процессе делился с коллегами чек-листами по настройке доменов, что сократило время типовых операций в команде.',
-            '1С и автоматизация учёта: Получил базовое знакомство с 1С: программирование простых отчётов и обработок, поддержка учётных систем (конфигурации Управление торговлей, Бухгалтерия).',
-            'Автоматизировал выгрузку остатков товара из 1С в Excel-шаблоны для коммерческого отдела — сократил время ручного формирования отчётов на 2 часа в неделю.',
-            'Тесно взаимодействовал с сотрудниками отдела продаж, уточняя их реальные потребности, чтобы результат был максимально удобным и не требовал доработок.',
-            'Влияние на подразделения: Отдел разработки → своевременная вёрстка промо-страниц и лендингов под рекламные кампании, базовые формы захвата лидов.',
-            'Никогда не задерживал смежников — моей мотивацией было сдать задачу ровно в срок или чуть раньше, с чистовой вёрсткой, готовой к интеграции.',
-            'Ключевые достижения (измеримые): Сверстал и запустил 10+ адаптивных сайтов с нуля, средняя скорость загрузки страниц по Google PageSpeed — 85+ баллов.',
-            'Осознанно добивался высоких показателей, потому что понимаю: скорость сайта влияет на бизнес клиента.',
-            'За счёт перехода на SASS и компонентный подход в React сократил время внесения правок в интерфейсы на 25%. Кроме того, поддерживал единый стиль кода в команде, чтобы при передаче проекта другому разработчику не возникало затруднений.',
-            'Обеспечил бесперебойную работу размещённых сайтов и базовой инфраструктуры (хостинги, домены) без простоев более 6 месяцев. Всегда воспринимал свою зону ответственности как полноценный продукт, а не просто набор задач.',
-          ],
-        },
-      ],
+      items: experienceRu,
     },
     skills: {
       title: 'Навыки',
@@ -185,7 +175,16 @@ export const content: Record<Language, LocalizedContent> = {
         },
         {
           title: 'Design & AI',
-          items: ['Figma', 'UI/UX', 'ChatGPT API', 'Cursor', 'Copilot', 'Prompt Engineering', 'Automation'],
+          items: [
+            'Figma',
+            'UI/UX',
+            'RAG',
+            'LLM Orchestration',
+            'OpenAI API',
+            'DeepSeek',
+            'Prompt Engineering',
+            'Human-in-the-Loop',
+          ],
         },
       ],
     },
@@ -205,6 +204,7 @@ export const content: Record<Language, LocalizedContent> = {
     },
   },
   en: {
+    brand: 'Candidate Resume',
     nav: {
       about: 'About',
       experience: 'Experience',
@@ -212,42 +212,145 @@ export const content: Record<Language, LocalizedContent> = {
       works: 'My work',
       contacts: 'Contacts',
     },
+    navShort: {
+      about: 'About',
+      experience: 'Career',
+      skills: 'Skills',
+      works: 'Works',
+      contacts: 'Contact',
+    },
     hero: {
       name: 'Yury Tsoy',
       role: 'Fullstack AI Operator | Middle Frontend Developer',
       summary:
-        'I build fast and readable web products from prototype to production. I integrate AI tools into development workflows to ship faster without losing quality.',
+        'Fullstack AI Operator: I design and ship web products with production-ready AI — from RAG systems and LLM orchestration to interfaces and DevOps.',
       primaryCta: 'Download CV',
       secondaryCta: 'Contact',
+      stats: [
+        { value: '16', label: 'projects' },
+        { value: '4+', label: 'years exp.' },
+        { value: 'AI', label: 'Fullstack' },
+      ],
     },
     about: {
       title: 'About',
-      paragraphs: [
-        'This section is shown in Russian as in the original resume text.',
+      tabs: [
+        {
+          id: 'stack',
+          label: 'Stack',
+          blocks: [
+            {
+              kind: 'group',
+              title: 'Frontend',
+              text: 'React, Next.js, TypeScript, responsive layout, complex UI dashboards and analytics cabinets.',
+            },
+            {
+              kind: 'group',
+              title: 'Backend',
+              text: 'Python, FastAPI, PostgreSQL, Redis, REST API, multi-tenant SaaS architecture (MPKiller).',
+            },
+            {
+              kind: 'group',
+              title: 'AI & RAG',
+              text: 'vector knowledge bases, RAG pipelines, LLM API gateway, prompt engineering, LangChain (basics), OpenAI / DeepSeek / Perplexity integrations.',
+            },
+            {
+              kind: 'group',
+              title: 'Marketplace integrations',
+              text: 'Ozon API, Wildberries API, product uploads, pricing, competitor analytics.',
+            },
+            {
+              kind: 'group',
+              title: 'DevOps',
+              text: 'Docker, GitHub Actions, Nginx, monitoring, CI/CD. CMS and PHP/MySQL in enterprise projects.',
+            },
+          ],
+        },
+        {
+          id: 'ai',
+          label: 'AI',
+          blocks: [
+            {
+              kind: 'lead',
+              text: 'Fullstack AI Operator: I build production AI features — RAG, LLM orchestration, Human-in-the-Loop, and response quality control — not just AI-assisted coding.',
+            },
+            {
+              kind: 'card',
+              title: 'MPKiller',
+              url: 'https://mpkiller.ru',
+              text: 'built a product knowledge RAG system for automated replies to marketplace reviews and buyer questions on Ozon/Wildberries. Routes across DeepSeek, Perplexity, and ChatGPT (OpenAI) with catalog context.',
+            },
+            {
+              kind: 'card',
+              title: 'GEO+',
+              url: 'https://agnc.plus-geo.com',
+              text: 'AI Visibility Framework platform for brand presence in ChatGPT, Alice AI, and other generative systems. Prompt Research (100+ prompts), AI Research, Knowledge Gap Analysis.',
+            },
+            {
+              kind: 'card',
+              title: 'GEO+ AI Knowledge Factory',
+              text: 'content production with Human-in-the-Loop and knowledge distribution across the brand digital ecosystem — beyond classic SEO.',
+            },
+            {
+              kind: 'card',
+              title: 'Development acceleration',
+              text: 'Cursor, Copilot, Gemini, and Python pipelines for code, tests, and docs — time-to-demo reduced by 40–50%.',
+            },
+          ],
+        },
+        {
+          id: 'team',
+          label: 'Team',
+          blocks: [
+            {
+              kind: 'bullet',
+              text: 'I lead development and processes: code review, Git Flow, CI/CD, API documentation (OpenAPI/Swagger).',
+            },
+            {
+              kind: 'bullet',
+              text: 'I share AI workflows and templates — upskilling the team directly speeds up releases.',
+            },
+            {
+              kind: 'bullet',
+              text: 'I solo fullstack stacks typically split across 2–3 specialists: architecture, backend, UI, and deploy.',
+            },
+            {
+              kind: 'bullet',
+              text: 'Business communication: translating marketplace sellers and marketing team needs into technical solutions.',
+            },
+          ],
+        },
+        {
+          id: 'results',
+          label: 'Results',
+          blocks: [
+            {
+              kind: 'card',
+              title: 'MPKiller',
+              text: 'marketplace SaaS — tenant cabinets, roles, 2FA, RAG-powered AI auto-replies, top/anti-top analytics, and promotion automation.',
+            },
+            {
+              kind: 'card',
+              title: 'GEO+',
+              text: 'AI Visibility Framework in production — Baseline, Semantic Intelligence, client dashboard with KPIs and generative search presence monitoring.',
+            },
+            {
+              kind: 'card',
+              title: 'Setly',
+              text: 'travel MVP shipped 40% faster (4 → 2.5 months), Lighthouse 92+ Mobile, 99.5% uptime.',
+            },
+            {
+              kind: 'card',
+              title: 'B2B platform',
+              text: 'for 10 companies in one group — full frontend solo on a two-developer timeline. AI code review cut frontend testing bugs ~30%.',
+            },
+          ],
+        },
       ],
     },
     experience: {
       title: 'Experience',
-      items: [
-        {
-          period: 'Nov 2025 — Present',
-          role: 'Technical CEO / Lead Fullstack Developer',
-          company: 'Setly',
-          fullText: ['The experience section is shown in Russian to preserve original resume wording.'],
-        },
-        {
-          period: 'Jul 2022 — Feb 2025',
-          role: 'Head of IT Department',
-          company: 'GK KKM',
-          fullText: ['The experience section is shown in Russian to preserve original resume wording.'],
-        },
-        {
-          period: 'Dec 2020 — Nov 2021',
-          role: 'Web Developer / Technical Specialist',
-          company: 'Dream Consulting',
-          fullText: ['The experience section is shown in Russian to preserve original resume wording.'],
-        },
-      ],
+      items: experienceEn,
     },
     skills: {
       title: 'Skills',
@@ -262,7 +365,16 @@ export const content: Record<Language, LocalizedContent> = {
         },
         {
           title: 'Design & AI',
-          items: ['Figma', 'UI/UX', 'ChatGPT API', 'Cursor', 'Copilot', 'Prompt Engineering', 'Automation'],
+          items: [
+            'Figma',
+            'UI/UX',
+            'RAG',
+            'LLM Orchestration',
+            'OpenAI API',
+            'DeepSeek',
+            'Prompt Engineering',
+            'Human-in-the-Loop',
+          ],
         },
       ],
     },

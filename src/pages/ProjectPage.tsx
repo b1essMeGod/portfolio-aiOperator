@@ -1,4 +1,9 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import MacbookShowcase from '../components/motion/MacbookShowcase'
+import Reveal from '../components/motion/Reveal'
+import { StaggerGroup, StaggerItem } from '../components/motion/Stagger'
+import Button from '../components/ui/Button'
+import Chip from '../components/ui/Chip'
 import { projects } from '../data/projects'
 import { type Language } from '../i18n/content'
 import { applyTypographer } from '../utils/typography'
@@ -41,12 +46,18 @@ export default function ProjectPage({ language }: ProjectPageProps) {
   if (!project) {
     return (
       <div className="page-shell">
-        <section className="content-section project-template">
-          <h1>{t.notFound}</h1>
-          <Link className="button button-secondary" to="/">
-            {t.backToHome}
-          </Link>
-        </section>
+        <Reveal as="section" className="content-section project-template" blur={false}>
+          <StaggerGroup mode="mount" delayChildren={0.05}>
+            <StaggerItem>
+              <h1>{t.notFound}</h1>
+            </StaggerItem>
+            <StaggerItem>
+              <Button as="link" variant="secondary" to="/">
+                {t.backToHome}
+              </Button>
+            </StaggerItem>
+          </StaggerGroup>
+        </Reveal>
       </div>
     )
   }
@@ -54,62 +65,74 @@ export default function ProjectPage({ language }: ProjectPageProps) {
   return (
     <div className="page-shell">
       <section className="content-section project-template">
-        <Link className="button button-secondary back-link" to="/">
-          {t.toHome}
-        </Link>
-        <p className="project-label">
-          {t.projectLabel} #{project.id}
-        </p>
-        <h1>{tp(project.title[language])}</h1>
-        <p>{tp(project.description[language])}</p>
+        <StaggerGroup mode="mount" delayChildren={0.06}>
+          <StaggerItem>
+            <Button as="link" variant="secondary" className="back-link" to="/">
+              {t.toHome}
+            </Button>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="project-label">
+              {t.projectLabel} #{project.id}
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <h1>{tp(project.title[language])}</h1>
+          </StaggerItem>
+          <StaggerItem>
+            <p>{tp(project.description[language])}</p>
+          </StaggerItem>
+        </StaggerGroup>
 
         {project.siteUrl ? (
-          <a className="button button-primary project-site-link" href={project.siteUrl} target="_blank" rel="noreferrer">
-            {t.openSite}
-          </a>
+          <Reveal delay={0.1}>
+            <Button as="a" variant="primary" className="project-site-link" href={project.siteUrl} target="_blank" rel="noreferrer">
+              {t.openSite}
+            </Button>
+          </Reveal>
         ) : null}
 
-        <div className="project-placeholder">
+        <Reveal className="project-placeholder">
           <h2>{t.context}</h2>
           <p>{tp(project.context[language])}</p>
           <h2>{t.highlights}</h2>
-          <ul>
+          <StaggerGroup as="ul" className="project-highlights-list" staggerChildren={0.05} delayChildren={0.08}>
             {project.highlights[language].map((item) => (
-              <li key={item}>{tp(item)}</li>
+              <StaggerItem key={item} as="li">
+                {tp(item)}
+              </StaggerItem>
             ))}
-          </ul>
+          </StaggerGroup>
           <h2>{t.stack}</h2>
-          <div className="chips">
-            {project.stack.map((tech) => (
-              <span key={tech} className="chip">
-                {tp(tech)}
-              </span>
+          <StaggerGroup className="chips" staggerChildren={0.04} delayChildren={0.06}>
+            {project.stack.map((tech, index) => (
+              <StaggerItem key={tech} as="span">
+                <Chip tint={index}>{tp(tech)}</Chip>
+              </StaggerItem>
             ))}
-          </div>
-        </div>
+          </StaggerGroup>
+        </Reveal>
 
-        <section className="macbook-showcase" aria-label={t.macbookAria}>
-          <div className="macbook-shell">
-            <img className="macbook-frame" src={`${import.meta.env.BASE_URL}works/macbook.png`} alt="" />
-            <div className="macbook-viewport">
+        <MacbookShowcase
+          projectId={project.id}
+          imageName={project.images[0]}
+          title={tp(project.title[language])}
+          ariaLabel={t.macbookAria}
+        />
+
+        {project.images.length > 1 ? (
+          <section className="project-gallery">
+            {project.images.slice(1).map((imageName) => (
               <img
-                src={`${import.meta.env.BASE_URL}works/project-${project.id}/${project.images[0]}`}
-                alt={`${tp(project.title[language])} first screen`}
+                key={imageName}
+                src={`${import.meta.env.BASE_URL}works/project-${project.id}/${imageName}`}
+                alt={`${tp(project.title[language])} ${imageName}`}
+                loading="lazy"
+                draggable={false}
               />
-            </div>
-          </div>
-        </section>
-
-        <section className="project-gallery">
-          {project.images.map((imageName) => (
-            <img
-              key={imageName}
-              src={`${import.meta.env.BASE_URL}works/project-${project.id}/${imageName}`}
-              alt={`${tp(project.title[language])} ${imageName}`}
-              loading="lazy"
-            />
-          ))}
-        </section>
+            ))}
+          </section>
+        ) : null}
       </section>
     </div>
   )

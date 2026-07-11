@@ -19,7 +19,7 @@ Production-ready personal portfolio website with bilingual content, theme switch
   - About
   - Experience
   - Skills
-  - Work showcase (14 projects)
+  - Work showcase (16 projects)
   - Contacts
 - RU/EN language support
 - Dark/Light themes with smooth transitions
@@ -49,7 +49,7 @@ public/
   works/
     macbook.png
     projects-thumbnails/
-    project-1 ... project-14/
+    project-1 ... project-16/
 scripts/
   prepare-pages.mjs          # Creates dist/404.html for SPA fallback on GitHub Pages
 .github/workflows/
@@ -113,8 +113,9 @@ This uses `gh-pages` package and publishes `dist` to `gh-pages` branch.
 
 ## Before pushing to GitHub
 
-Do not commit generated artifacts:
+Do not commit generated artifacts or local-only folders:
 - `node_modules/`
 - `dist/`
+- `references/` (local design refs, excluded from repo and deploy)
 
 They are already ignored in `.gitignore`.
