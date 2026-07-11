@@ -172,14 +172,14 @@ export default function HomePage({ language, onLanguageChange, theme, onThemeTog
           </div>
         </section>
 
-        <Reveal as="section" id="about" className="content-section">
+        <Reveal as="section" id="about" className="content-section" blur={false}>
           <LanguageSwap language={language}>
             <h2>{t.about.title}</h2>
             <TabPanel tabs={t.about.tabs} renderText={tp} />
           </LanguageSwap>
         </Reveal>
 
-        <Reveal as="section" id="experience" className="content-section">
+        <Reveal as="section" id="experience" className="content-section" blur={false}>
           <LanguageSwap language={language}>
             <h2>{t.experience.title}</h2>
             <div className="experience-timeline">
@@ -200,7 +200,7 @@ export default function HomePage({ language, onLanguageChange, theme, onThemeTog
           </LanguageSwap>
         </Reveal>
 
-        <Reveal as="section" id="skills" className="content-section">
+        <Reveal as="section" id="skills" className="content-section" blur={false}>
           <LanguageSwap language={language}>
             <h2>{t.skills.title}</h2>
             <StaggerGroup className="skills-grid">
@@ -220,7 +220,7 @@ export default function HomePage({ language, onLanguageChange, theme, onThemeTog
           </LanguageSwap>
         </Reveal>
 
-        <Reveal as="section" id="works" className="content-section">
+        <Reveal as="section" id="works" className="content-section" blur={false}>
           <LanguageSwap language={language}>
             <h2>{t.nav.works}</h2>
           </LanguageSwap>
@@ -244,7 +244,7 @@ export default function HomePage({ language, onLanguageChange, theme, onThemeTog
           </StaggerGroup>
         </Reveal>
 
-        <Reveal as="section" id="contacts" className="content-section contact-section">
+        <Reveal as="section" id="contacts" className="content-section contact-section" blur={false}>
           <LanguageSwap language={language}>
             <h2>{t.contacts.title}</h2>
             <p>{tp(t.contacts.intro)}</p>
@@ -272,7 +272,7 @@ export default function HomePage({ language, onLanguageChange, theme, onThemeTog
         </Reveal>
       </main>
 
-      <Reveal as="footer">{tp(t.footer)}</Reveal>
+      <Reveal as="footer" blur={false}>{tp(t.footer)}</Reveal>
     </div>
   )
 }

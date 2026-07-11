@@ -274,22 +274,15 @@ img {
   padding: 0.75rem 1rem;
   border: 1px solid var(--glass-border);
   border-radius: 999px;
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow);
   transition:
     border-color var(--motion-base),
     background var(--motion-base),
     box-shadow var(--motion-base),
     padding var(--motion-base);
-  isolation: isolate;
-}
-
-@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .site-header {
-    background: var(--glass);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-  }
 }
 
 .site-header.is-scrolled {
@@ -838,7 +831,9 @@ main {
 footer {
   border: 1px solid var(--glass-border);
   border-radius: 28px;
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.025) 100%);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   box-shadow: var(--shadow);
   transition:
     border-color var(--motion-base),
@@ -849,17 +844,7 @@ footer {
 :root[data-theme='light'] .hero-section,
 :root[data-theme='light'] .content-section,
 :root[data-theme='light'] footer {
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.58) 100%);
-}
-
-@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .hero-section,
-  .content-section,
-  footer {
-    background: var(--glass);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-  }
+  background: var(--glass);
 }
 
 .content-section[id] {

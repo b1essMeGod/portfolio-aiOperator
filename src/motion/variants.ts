@@ -1,6 +1,14 @@
 import type { Variants } from 'framer-motion'
 import { duration, ease, stagger } from './tokens'
 
+export const fadeIn: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: duration.slow, ease: ease.outExpo },
+  },
+}
+
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -57,15 +65,13 @@ export const headerEnter: Variants = {
 }
 
 export const pageEnter: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: { duration: duration.page, ease: ease.outExpo },
   },
   exit: {
     opacity: 0,
-    y: -10,
     transition: { duration: duration.base, ease: ease.outExpo },
   },
 }

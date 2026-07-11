@@ -2,7 +2,7 @@ import { motion, type HTMLMotionProps } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { useReducedMotionConfig } from '../../motion/useReducedMotionConfig'
 import { viewport } from '../../motion/tokens'
-import { fadeUp, fadeUpBlur } from '../../motion/variants'
+import { fadeUp, fadeUpBlur, fadeIn } from '../../motion/variants'
 
 type RevealElement = 'section' | 'article' | 'div' | 'footer' | 'header' | 'main'
 
@@ -37,7 +37,9 @@ export default function Reveal({
 }: RevealProps) {
   const motionConfig = useReducedMotionConfig()
   const Component = motionMap[as]
-  const variants = motionConfig.getVariants(blur && !motionConfig.disableBlur ? fadeUpBlur : fadeUp)
+  const variants = motionConfig.getVariants(
+    blur && !motionConfig.disableBlur ? fadeUpBlur : blur ? fadeUp : fadeIn,
+  )
 
   return (
     <Component
